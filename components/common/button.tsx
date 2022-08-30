@@ -5,14 +5,16 @@ import { tw } from "@twind";
 type Props = {
   className?: string;
   type?: string;
+  onClick: () => void;
   children: ComponentChildren;
 };
 
-export default function Button({ className, type, children }: Props) {
+export default function Button({ className, type, onClick, children }: Props) {
   return (
     <button
-      class={tw`p-2 inline-flex items-center text(background sm) bg-text hover:bg-icon rounded-md shadow-sm transition-colors ${className}`}
+      class={tw`px-4 py-2 inline-flex items-center text(background sm) rounded-md shadow-sm transition-colors ${className}`}
       type={type}
+      onClick={onClick}
     >
       {children}
     </button>
