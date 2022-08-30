@@ -8,6 +8,7 @@ import { Mission } from "@interfaces/missions.ts";
  */
 export function fetchUser(): User {
   return {
+    id: "id",
     name: "ユーザ名",
     pass: "pass",
     rank: 0,
