@@ -3,10 +3,6 @@ import { h } from "preact";
 import { useState } from "preact/hooks";
 
 import { tw } from "@utils/twind.ts";
-import {
-  getDefaultLoginInfo,
-  setLoginInfoToLocalStorage,
-} from "@utils/storage.ts";
 
 // フェッチのラップ関数の型
 type MyFetch = (body: { name: string; pass: string }) => { result: boolean };
@@ -26,10 +22,8 @@ const myFetch: MyFetch = (body) => {
 };
 
 const LoginForm = () => {
-  const local = getDefaultLoginInfo();
-
   const [result, setResult] = useState<"Yet" | "Error" | "SUCCESS">("Yet");
-  const [name, setName] = useState<string>(local.name);
+  const [name, setName] = useState<string>("");
   const [pass, setPass] = useState<string>("");
 
   const onClick = () => {
@@ -38,12 +32,7 @@ const LoginForm = () => {
       pass,
     });
 
-    if (res.result) {
-      setResult("SUCCESS");
-      setLoginInfoToLocalStorage({ id: "id_hoge", name });
-    } else {
-      setResult("Error");
-    }
+    setResult(res.result ? "SUCCESS" : "Error");
   };
 
   return (
