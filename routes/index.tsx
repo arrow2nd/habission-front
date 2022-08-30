@@ -1,7 +1,8 @@
 /** @jsx h */
 import { h } from "preact";
-import { tw } from "@twind";
-import LoginForm from "../islands/LoginForm.tsx";
+import { tw } from "@utils/twind.ts";
+
+import LoginForm from "@islands/LoginForm.tsx";
 
 export default function Home() {
   return (
