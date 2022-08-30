@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div class={tw`p-4 mx-auto max-w-screen-md`}>
       <Input name="test" placeholder="test" type="password" />
-      <Button className="bg-blue-100">ボタン</Button>
+      <Button className="bg-blue-100">ボタン!!</Button>
     </div>
   );
 }
