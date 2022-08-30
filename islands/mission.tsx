@@ -16,7 +16,7 @@ export default function MissionCard() {
       {missions.map(({ title, desc, isDone }) => (
         <div>
           <input type="checkbox" id={title} name={title} checked={isDone} />
-          <label class={tw`ml-1`} for="scales" title={desc}>
+          <label class={tw`ml-1`} for={title} title={desc}>
             {title}
           </label>
         </div>
