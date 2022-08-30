@@ -1,6 +1,6 @@
 /** @jsx h */
 import { h, ComponentChildren } from "preact";
-import { tw } from "@twind";
+import { tw } from "@utils/twind.ts";
 
 type Props = {
   className?: string;

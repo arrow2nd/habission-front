@@ -1,8 +1,8 @@
 /** @jsx h */
 import { h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@utils/twind.ts";
 
-import Logout from "../islands/logout.tsx";
+import Logout from "@islands/logout.tsx";
 
 export default function Header() {
   return (
