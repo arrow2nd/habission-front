@@ -2,10 +2,18 @@
 import { h } from "preact";
 import { tw } from "@twind";
 
-export default function Home() {
+import Card from "@components/card.tsx";
+import Header from "@components/header.tsx";
+
+export default function MyPage() {
   return (
-    <div class={tw`p-4 mx-auto max-w-screen-md`}>
-      <p>MyPage</p>
+    <div>
+      <Header />
+      <main class={tw`px-16 py-8 flex justify-center`}>
+        <Card title="Status" icon="info-circle">
+          test
+        </Card>
+      </main>
     </div>
   );
 }
