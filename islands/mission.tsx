@@ -1,23 +1,13 @@
 /** @jsx h */
 import { h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@utils/twind.ts";
 
 import Card from "@components/card.tsx";
-import { Mission } from "@interfaces/missions.ts";
+
+import { fetchMissions } from "@utils/data.ts";
 
 export default function MissionCard() {
-  const missions: Mission[] = [
-    {
-      title: "テスト",
-      desc: "説明",
-      isDone: false,
-    },
-    {
-      title: "テスト",
-      desc: "説明",
-      isDone: false,
-    },
-  ];
+  const missions = fetchMissions();
 
   // MEMO: idほしいかも
 
