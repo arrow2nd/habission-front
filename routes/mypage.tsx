@@ -1,11 +1,20 @@
 /** @jsx h */
 import { h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@utils/twind.ts";
 
-export default function Home() {
+import Header from "@components/header.tsx";
+
+import StatusCard from "@islands/user.tsx";
+import MissionCard from "@islands/mission.tsx";
+
+export default function MyPage() {
   return (
-    <div class={tw`p-4 mx-auto max-w-screen-md`}>
-      <p>MyPage</p>
+    <div>
+      <Header />
+      <main class={tw`px-16 py-8 flex flex-col justify-center space-y-6`}>
+        <StatusCard />
+        <MissionCard />
+      </main>
     </div>
   );
 }

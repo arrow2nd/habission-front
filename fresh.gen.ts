@@ -15,6 +15,9 @@ const manifest = {
   },
   islands: {
     "./islands/LoginForm.tsx": $$0,
+    "./islands/logout.tsx": $$0,
+    "./islands/mission.tsx": $$1,
+    "./islands/user.tsx": $$2,
   },
   baseUrl: import.meta.url,
 };
