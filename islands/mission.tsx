@@ -9,14 +9,12 @@ import { fetchMissions } from "@utils/data.ts";
 export default function MissionCard() {
   const missions = fetchMissions();
 
-  // MEMO: idほしいかも
-
   return (
     <Card title="Today's Mission" icon="checklist">
-      {missions.map(({ title, desc, isDone }) => (
+      {missions.map(({ id, title, desc, isDone }) => (
         <div>
-          <input type="checkbox" id={title} name={title} checked={isDone} />
-          <label class={tw`ml-1`} for={title} title={desc}>
+          <input type="checkbox" id={id} name={id} checked={isDone} />
+          <label class={tw`ml-1`} for={id} title={desc}>
             {title}
           </label>
         </div>
