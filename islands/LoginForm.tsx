@@ -1,15 +1,15 @@
 /** @jsx h */
 import { h } from "preact";
 import { useState } from "preact/hooks";
-import { tw } from "@twind";
+
+import { tw } from "@utils/twind.ts";
+import {
+  getDefaultLoginInfo,
+  setLoginInfoToLocalStorage,
+} from "@utils/storage.ts";
 
 // フェッチのラップ関数の型
-type MyFetch = (
-  body: {
-    name: string;
-    pass: string;
-  },
-) => { result: boolean };
+type MyFetch = (body: { name: string; pass: string }) => { result: boolean };
 
 // データ取得、フェッチのラップ関数の予定だった
 // 時間的に無理そうバックエンドチーム頑張って
@@ -26,8 +26,10 @@ const myFetch: MyFetch = (body) => {
 };
 
 const LoginForm = () => {
+  const local = getDefaultLoginInfo();
+
   const [result, setResult] = useState<"Yet" | "Error" | "SUCCESS">("Yet");
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>(local.name);
   const [pass, setPass] = useState<string>("");
 
   const onClick = () => {
@@ -36,23 +38,30 @@ const LoginForm = () => {
       pass,
     });
 
-    !res.result ? setResult("Error") : setResult("SUCCESS");
+    if (res.result) {
+      setResult("SUCCESS");
+      setLoginInfoToLocalStorage({ id: "id_hoge", name });
+    } else {
+      setResult("Error");
+    }
   };
 
   return (
     <div>
       <h1 class={tw`text-center mb-16 mt-8 text-6xl`}>真人間ミッション</h1>
-      {result === "Error"
-        ? <p class={tw`text-center mb-8`}>ユーザー名かパスワードが間違っています。</p>
-        : null}
-      {result === "SUCCESS"
-        ? (
-          <p class={tw`text-center mb-8`}>
-            <p>ログイン成功しました。</p>
-            <a href="./mypage" class={tw`text-blue-700`}>マイページはこちら</a>
-          </p>
-        )
-        : null}
+      {result === "Error" ? (
+        <p class={tw`text-center mb-8`}>
+          ユーザー名かパスワードが間違っています。
+        </p>
+      ) : null}
+      {result === "SUCCESS" ? (
+        <p class={tw`text-center mb-8`}>
+          <p>ログイン成功しました。</p>
+          <a href="./mypage" class={tw`text-blue-700`}>
+            マイページはこちら
+          </a>
+        </p>
+      ) : null}
       <div class={tw`flex flex-col justify-center`}>
         <input
           type="name"

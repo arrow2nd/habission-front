@@ -15,19 +15,28 @@ export function fetchUser(): User {
   };
 }
 
-export function fetchMissions(): Mission[] {
-  return [
-    {
-      id: "test-1",
-      title: "テスト",
-      desc: "説明",
-      isDone: false,
-    },
-    {
-      id: "test-2",
-      title: "テスト",
-      desc: "説明",
-      isDone: false,
-    },
-  ];
+/**
+ * ミッション一覧を取得する
+ * @returns ミッション一覧
+ */
+export async function fetchMissions(): Promise<Mission[]> {
+  const url = "https://maningen.herokuapp.com/missions";
+
+  // 5秒でタイムアウト
+  const ctrl = new AbortController();
+  const id = setTimeout(() => ctrl.abort(), 5000);
+
+  try {
+    const res = await fetch(url.toString(), { signal: ctrl.signal });
+    if (!res.ok) {
+      return [];
+    }
+
+    clearTimeout(id);
+
+    return await res.json();
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
 }
