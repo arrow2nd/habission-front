@@ -1,11 +1,12 @@
 /** @jsx h */
 import { h } from "preact";
 import { useState } from "preact/hooks";
+
 import { tw } from "@utils/twind.ts";
 import {
   getDefaultLoginInfo,
   setLoginInfoToLocalStorage,
-} from "../utils/storage.ts";
+} from "@utils/storage.ts";
 
 // フェッチのラップ関数の型
 type MyFetch = (body: { name: string; pass: string }) => { result: boolean };
