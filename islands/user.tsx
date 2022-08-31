@@ -6,13 +6,15 @@ import Card from "@components/card.tsx";
 
 import { fetchUser } from "@utils/data.ts";
 import { getRank } from "@utils/rank.ts";
+import { getDefaultLoginInfo } from "../utils/storage.ts";
 
 type Props = {
   missionPt: number;
 };
 
 export default function StatusCard({ missionPt }: Props) {
-  const { name, rank } = fetchUser();
+  const { name } = getDefaultLoginInfo();
+  const { rank } = fetchUser();
   const rankText = getRank(missionPt, rank);
 
   return (
