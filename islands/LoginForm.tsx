@@ -40,6 +40,8 @@ const LoginForm = () => {
     setResult(res.result ? "SUCCESS" : "Error");
   };
 
+  
+
   return (
     <div>
       <h1 class={tw`text-center mb-16 mt-8 text-6xl`}>真人間ミッション</h1>

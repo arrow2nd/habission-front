@@ -6,12 +6,15 @@ import { tw } from "@utils/twind.ts";
 import Card from "@components/card.tsx";
 
 import { Mission } from "@interfaces/missions.ts";
+import { getDefaultLoginInfo } from "../utils/strage.ts";
 
 type Props = {
   items: Mission[];
 };
 
 export default function MissionCard({ items }: Props) {
+  const user = getDefaultLoginInfo()
+  console.log(user)
   return (
     <Card title="Today's Mission" icon="checklist">
       {items.length > 0 ? (
