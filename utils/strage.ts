@@ -9,11 +9,15 @@ type LoginInfo = {
  * @returns LoginInfo
  */
 export function getDefaultLoginInfo(): LoginInfo {
-  const defaultLoginInfo = window.localStorage.getItem("loginInfo");
+  try {
+    const defaultLoginInfo = window.localStorage.getItem("loginInfo");
 
-  if (defaultLoginInfo) {
-    return JSON.parse(defaultLoginInfo) as LoginInfo;
-  } else {
+    if (defaultLoginInfo) {
+      return JSON.parse(defaultLoginInfo) as LoginInfo;
+    } else {
+      return { id: "", name: "" };
+    }
+  } catch {
     return { id: "", name: "" };
   }
 }
