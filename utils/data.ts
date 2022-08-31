@@ -40,3 +40,24 @@ export async function fetchMissions(): Promise<Mission[]> {
     return [];
   }
 }
+
+/**
+ * ミッションを完了にする
+ * @param userId ユーザID
+ * @param missionId ミッションID
+ * @returns 正常に完了したか
+ */
+export async function doneMission(
+  userId: string,
+  missionId: string,
+): Promise<boolean> {
+  const url = new URL("https://maningen.herokuapp.com/users");
+  url.searchParams.append("user_id", userId);
+  url.searchParams.append("mission_id", missionId);
+
+  const res = await fetch(url, {
+    method: "PATCH",
+  });
+
+  return res.ok;
+}
