@@ -12,7 +12,7 @@ type MyFetch = (body: { name: string; pass: string }) => { result: boolean };
 // 時間的に無理そうバックエンドチーム頑張って
 const myFetch: MyFetch = (body) => {
   try {
-    if (body.name !== "ikki") {
+    if (!["ikki", "teraki", "teru", "arrow"].includes(body.name)) {
       throw "NOT_FOUND_USER";
     }
 
@@ -34,7 +34,7 @@ const LoginForm = () => {
     });
 
     if (res.result) {
-      setLoginInfoToLocalStorage({ id: "1", name: "ikki" });
+      setLoginInfoToLocalStorage({ id: "1", name: name });
       setResult("SUCCESS");
     } else {
       setResult("Error");
