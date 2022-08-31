@@ -3,6 +3,7 @@ import { h } from "preact";
 import { useState } from "preact/hooks";
 
 import { tw } from "@utils/twind.ts";
+import { setLoginInfoToLocalStorage } from "../utils/storage.ts";
 
 // フェッチのラップ関数の型
 type MyFetch = (body: { name: string; pass: string }) => { result: boolean };
@@ -32,25 +33,34 @@ const LoginForm = () => {
       pass,
     });
 
-    setResult(res.result ? "SUCCESS" : "Error");
+    if (res.result) {
+      setLoginInfoToLocalStorage({ id: "1", name: "ikki" });
+      setResult("SUCCESS");
+    } else {
+      setResult("Error");
+    }
   };
 
   return (
     <div>
       <h1 class={tw`text-center mb-16 mt-8 text-6xl`}>真人間ミッション</h1>
-      {result === "Error" ? (
-        <p class={tw`text-center mb-8`}>
-          ユーザー名かパスワードが間違っています。
-        </p>
-      ) : null}
-      {result === "SUCCESS" ? (
-        <p class={tw`text-center mb-8`}>
-          <p>ログイン成功しました。</p>
-          <a href="./mypage" class={tw`text-blue-700`}>
-            マイページはこちら
-          </a>
-        </p>
-      ) : null}
+      {result === "Error"
+        ? (
+          <p class={tw`text-center mb-8`}>
+            ユーザー名かパスワードが間違っています。
+          </p>
+        )
+        : null}
+      {result === "SUCCESS"
+        ? (
+          <p class={tw`text-center mb-8`}>
+            <p>ログイン成功しました。</p>
+            <a href="./mypage" class={tw`text-blue-700`}>
+              マイページはこちら
+            </a>
+          </p>
+        )
+        : null}
       <div class={tw`flex flex-col justify-center`}>
         <input
           type="name"
