@@ -43,24 +43,20 @@ const LoginForm = () => {
 
   return (
     <div>
-      <h1 class={tw`text-center mb-16 mt-8 text-6xl`}>真人間ミッション</h1>
-      {result === "Error"
-        ? (
-          <p class={tw`text-center mb-8`}>
-            ユーザー名かパスワードが間違っています。
-          </p>
-        )
-        : null}
-      {result === "SUCCESS"
-        ? (
-          <p class={tw`text-center mb-8`}>
-            <p>ログイン成功しました。</p>
-            <a href="./mypage" class={tw`text-blue-700`}>
-              マイページはこちら
-            </a>
-          </p>
-        )
-        : null}
+      <h1 class={tw`text-center mb-16 mt-8 text-6xl`}>Habission</h1>
+      {result === "Error" ? (
+        <p class={tw`text-center mb-8`}>
+          ユーザー名かパスワードが間違っています。
+        </p>
+      ) : null}
+      {result === "SUCCESS" ? (
+        <p class={tw`text-center mb-8`}>
+          <p>ログイン成功しました。</p>
+          <a href="./mypage" class={tw`text-blue-700`}>
+            マイページはこちら
+          </a>
+        </p>
+      ) : null}
       <div class={tw`flex flex-col justify-center`}>
         <input
           type="name"

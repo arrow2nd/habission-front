@@ -5,7 +5,7 @@ import { Head, asset } from "$fresh/runtime.ts";
 import { AppProps } from "$fresh/server.ts";
 
 export default function App(props: AppProps) {
-  const title = "maningen-mission";
+  const title = "Habission";
 
   return (
     <>
