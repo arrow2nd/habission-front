@@ -5,9 +5,11 @@ import { tw } from "@utils/twind.ts";
 import Card from "@components/card.tsx";
 
 import { fetchUser } from "@utils/data.ts";
+import { getDefaultLoginInfo } from "../utils/storage.ts";
 
 export default function StatusCard() {
-  const { name, rank } = fetchUser();
+  const { name } = getDefaultLoginInfo();
+  const { rank } = fetchUser();
 
   return (
     <Card title="Status" icon="info-circle">
