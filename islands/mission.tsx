@@ -7,46 +7,49 @@ import { doneMission } from "@utils/data.ts";
 import Card from "@components/card.tsx";
 
 import { Mission } from "@interfaces/missions.ts";
+import { getDefaultLoginInfo } from "../utils/storage.ts";
 
 type Props = {
   items: Mission[];
 };
 
 export default function MissionCard({ items }: Props) {
+  const { id } = getDefaultLoginInfo();
+
   const handleChange = async (
-    e: h.JSX.TargetedEvent<HTMLInputElement, Event>
+    e: h.JSX.TargetedEvent<HTMLInputElement, Event>,
   ) => {
     if (e.currentTarget.checked) {
       alert("既に完了済みのミッションです");
       return;
     }
 
-    const ok = await doneMission("", e.currentTarget.id.toString());
+    const ok = await doneMission(id, e.currentTarget.id.toString());
     alert(
-      ok ? "ミッションを完了しました" : "ミッションを完了にできませんでした"
+      ok ? "ミッションを完了しました" : "ミッションを完了にできませんでした",
     );
   };
 
   return (
     <Card title="Today's Mission" icon="checklist">
-      {items.length > 0 ? (
-        items.map(({ id, title, description }) => (
-          <div>
-            <input
-              type="checkbox"
-              id={id}
-              name={id}
-              checked={false}
-              onChange={handleChange}
-            />
-            <label class={tw`ml-1`} for={id} title={description}>
-              {title}
-            </label>
-          </div>
-        ))
-      ) : (
-        <p>No Items</p>
-      )}
+      {items.length > 0
+        ? (
+          items.map(({ id, title, description }) => (
+            <div>
+              <input
+                type="checkbox"
+                id={id}
+                name={id}
+                checked={false}
+                onChange={handleChange}
+              />
+              <label class={tw`ml-1`} for={id} title={description}>
+                {title}
+              </label>
+            </div>
+          ))
+        )
+        : <p>No Items</p>}
     </Card>
   );
 }
