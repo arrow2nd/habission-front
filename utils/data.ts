@@ -57,7 +57,7 @@ export async function doneMission(
   url.searchParams.append("mission_id", missionId);
 
   const res = await fetch(url, {
-    method: "PATCH",
+    method: "POST",
   });
 
   return res.ok;
