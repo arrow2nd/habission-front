@@ -1,11 +1,7 @@
-# fresh project
+# maningen-mission
 
-### Usage
-
-Start the project:
+### Run
 
 ```
 deno task start
 ```
-
-This will watch the project directory and restart as necessary.
