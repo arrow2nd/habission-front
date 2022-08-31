@@ -1,6 +1,7 @@
 import { User } from "@interfaces/users.ts";
 import { Mission } from "@interfaces/missions.ts";
 
+const endpoint = "https://maningen.herokuapp.com";
 /**
  * ユーザ情報を取得
  * TODO: asyncにする
@@ -20,7 +21,7 @@ export function fetchUser(): User {
  * @returns ミッション一覧
  */
 export async function fetchMissions(): Promise<Mission[]> {
-  const url = "https://maningen.herokuapp.com/missions";
+  const url = endpoint + "/missions";
 
   // 5秒でタイムアウト
   const ctrl = new AbortController();
@@ -51,7 +52,7 @@ export async function doneMission(
   userId: string,
   missionId: string,
 ): Promise<boolean> {
-  const url = new URL("https://maningen.herokuapp.com/users");
+  const url = new URL(endpoint + "/users");
   url.searchParams.append("user_id", userId);
   url.searchParams.append("mission_id", missionId);
 

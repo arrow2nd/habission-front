@@ -5,9 +5,17 @@ import { tw } from "@utils/twind.ts";
 import Card from "@components/card.tsx";
 
 import { fetchUser } from "@utils/data.ts";
+import { getRank } from "@utils/rank.ts";
 
-export default function StatusCard() {
+type Props = {
+  missionPt: number;
+};
+
+export default function StatusCard({ missionPt }: Props) {
   const { name, rank } = fetchUser();
+  const rankText = getRank(missionPt, rank);
+
+  console.log(missionPt, rank);
 
   return (
     <Card title="Status" icon="info-circle">
@@ -17,7 +25,7 @@ export default function StatusCard() {
       </div>
       <div class={tw`flex items-center`}>
         <i class={tw`ti ti-badge text-lg`} />
-        <span class={tw`ml-1 text-md`}>{rank}</span>
+        <span class={tw`ml-1 text-md`}>{rankText}</span>
       </div>
     </Card>
   );
