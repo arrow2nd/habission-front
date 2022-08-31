@@ -15,8 +15,6 @@ export default function StatusCard({ missionPt }: Props) {
   const { name, rank } = fetchUser();
   const rankText = getRank(missionPt, rank);
 
-  console.log(missionPt, rank);
-
   return (
     <Card title="Status" icon="info-circle">
       <div class={tw`flex items-center`}>
