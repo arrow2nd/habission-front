@@ -25,7 +25,7 @@ export function getDefaultLoginInfo(): LoginInfo {
  * ローカルストレージにLoginInfoを保存
  * @param loginInfo ログイン情報
  */
-export function setLoginInfoToLocalStorage(loginInfo: LoginInfo): void {
+export function setLoginInfoToLocalStorage(loginInfo: LoginInfo | null): void {
   const authInfoStringfy = JSON.stringify(loginInfo);
   window.localStorage.setItem("loginInfo", authInfoStringfy);
 }

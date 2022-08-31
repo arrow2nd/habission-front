@@ -2,16 +2,21 @@
 import { h } from "preact";
 import { tw } from "@utils/twind.ts";
 
-import Button from "@components/common/button.tsx";
+import { setLoginInfoToLocalStorage } from "../utils/storage.ts";
 
 export default function Logout() {
   const handleClick = () => {
-    alert("Logout");
+    setLoginInfoToLocalStorage(null);
+    alert("ログアウトしました。");
   };
 
   return (
-    <Button className={tw`bg-black hover:bg-gray-800`} onClick={handleClick}>
-      <span class={tw`text-white`}>Logout</span>
-    </Button>
+    <div
+      className={tw`bg-black hover:bg-gray-800 p-2 rounded-md cursor-pointer`}
+    >
+      <a href="/" onClick={handleClick}>
+        <span class={tw`text-white`}>Logout</span>
+      </a>
+    </div>
   );
 }
