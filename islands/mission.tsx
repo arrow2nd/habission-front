@@ -16,7 +16,7 @@ export default function MissionCard({ items }: Props) {
   const handleChange = async (
     e: h.JSX.TargetedEvent<HTMLInputElement, Event>
   ) => {
-    if (e.currentTarget.checked) {
+    if (!e.currentTarget.checked) {
       alert("既に完了済みのミッションです");
       return;
     }
